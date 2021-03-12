@@ -15,6 +15,11 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 # Initilize the DB
 db = SQLAlchemy(app) 
+# Then to set up the database do the following. 
+# Start an python shell
+# Run the command - from app import db
+# Then - db.create_all()
+# You should see a db file appear. 
 
 # This is the class model of our DB to follow. Pretty simillar to Django. Buiild a class
 # Then specifiy what data type if going to be housed in each column.
@@ -59,7 +64,6 @@ def index():
         # In the case that the page isn't handleing a POST request. This is what will happen. 
         # we will fill a variable with all of your DB content. 
         tasks = Todo.query.order_by(Todo.date_created).all()
-        print(tasks)
         # Then we need to pass that variable to our template. 
         return render_template('index.html', tasks=tasks)
 
